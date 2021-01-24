@@ -18,6 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
+
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeatherCell" rowHeight="100" id="h75-VQ-xnJ" customClass="WeatherCell" customModule="MvvmGoodWeatherApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -48,6 +49,7 @@
                                 <connections>
                                     <outlet property="cityNameLabel" destination="eY3-N1-mbQ" id="1wq-7U-QKo"/>
                                     <outlet property="temperatureLabel" destination="xkT-c0-zk7" id="DQR-zA-tZH"/>
+
                                 </connections>
                             </tableViewCell>
                         </prototypes>
