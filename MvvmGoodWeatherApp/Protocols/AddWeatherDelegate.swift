@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+protocol AddWeatherDelegate {
+    func addWeatherDidSave(viewModel: WeatherViewModel)
+}
