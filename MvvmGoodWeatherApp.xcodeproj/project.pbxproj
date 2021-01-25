@@ -16,6 +16,7 @@
 		2E2FDF4924E5CEDA00443389 /* AddWeatherCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2FDF4824E5CEDA00443389 /* AddWeatherCityViewController.swift */; };
 		7079341F25BF41E400C8CC78 /* AddCityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7079341E25BF41E400C8CC78 /* AddCityViewModel.swift */; };
 		7079342325BF424A00C8CC78 /* BindingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7079342225BF424A00C8CC78 /* BindingTextField.swift */; };
+		7079342625BF4CFE00C8CC78 /* WeatherDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7079342525BF4CFE00C8CC78 /* WeatherDetailsViewController.swift */; };
 		70D4345725BDE51200334BDE /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D4345625BDE51200334BDE /* WeatherCell.swift */; };
 		70D4345C25BDE83600334BDE /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D4345B25BDE83600334BDE /* WeatherService.swift */; };
 		70D4346425BDED1200334BDE /* WeatherListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D4346325BDED1200334BDE /* WeatherListViewModel.swift */; };
@@ -38,6 +39,7 @@
 		2E2FDF4824E5CEDA00443389 /* AddWeatherCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWeatherCityViewController.swift; sourceTree = "<group>"; };
 		7079341E25BF41E400C8CC78 /* AddCityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCityViewModel.swift; sourceTree = "<group>"; };
 		7079342225BF424A00C8CC78 /* BindingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingTextField.swift; sourceTree = "<group>"; };
+		7079342525BF4CFE00C8CC78 /* WeatherDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailsViewController.swift; sourceTree = "<group>"; };
 		70D4345625BDE51200334BDE /* WeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		70D4345B25BDE83600334BDE /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		70D4346325BDED1200334BDE /* WeatherListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListViewModel.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				2E2FDF4624E5CEB900443389 /* WeatherListTableViewController.swift */,
 				2E2FDF4824E5CEDA00443389 /* AddWeatherCityViewController.swift */,
 				70F3CB1225BDFA2400B68B42 /* SettingsTableViewController.swift */,
+				7079342525BF4CFE00C8CC78 /* WeatherDetailsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				70D4346425BDED1200334BDE /* WeatherListViewModel.swift in Sources */,
 				70F3CB1625BDFB3500B68B42 /* SettingsViewModel.swift in Sources */,
 				2E2FDF4924E5CEDA00443389 /* AddWeatherCityViewController.swift in Sources */,
+				7079342625BF4CFE00C8CC78 /* WeatherDetailsViewController.swift in Sources */,
 				70D4345C25BDE83600334BDE /* WeatherService.swift in Sources */,
 				2E2FDF3424E5CD9A00443389 /* SceneDelegate.swift in Sources */,
 				70F3CB1325BDFA2400B68B42 /* SettingsTableViewController.swift in Sources */,
