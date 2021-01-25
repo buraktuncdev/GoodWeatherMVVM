@@ -11,9 +11,12 @@ import UIKit
 
 class WeatherListTableViewController: UITableViewController {
     private var weatherListViewModel = WeatherListViewModel()
+    private var dataSource: WeatherDataSource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.dataSource = WeatherDataSource(self.weatherListViewModel)
+        self.tableView.dataSource = self.dataSource
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -22,22 +25,6 @@ class WeatherListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.weatherListViewModel.numberOfRows(section)
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath) as! WeatherCell
-        let weatherViewModel = self.weatherListViewModel.modelAt(indexPath.row)
-        cell.configure(weatherViewModel)
-        
-        return cell
     }
     
 }
