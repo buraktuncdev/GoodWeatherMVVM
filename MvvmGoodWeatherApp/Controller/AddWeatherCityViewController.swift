@@ -33,8 +33,6 @@ class AddWeatherCityViewController: UIViewController {
     
     @IBAction func saveButtonPressed(){
         
-        print(self.addCityViewModel)
-        
         if let city = cityNameTextField.text {
             let weatherURL = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=c2986ebdaa70141b1081463ede8bbe58&units=imperial")!
             
@@ -45,11 +43,9 @@ class AddWeatherCityViewController: UIViewController {
             }
             
             Webservice().load(resource: weatherResource) { [weak self] result in
-                if let weatherViewModel = result {
-                    if let delegate = self?.delegate {
-                        delegate.addWeatherDidSave(viewModel: weatherViewModel)
-                        self?.dismiss(animated: true, completion: nil)
-                    }
+                if let weatherViewModel = result, let delegate = self?.delegate {
+                    delegate.addWeatherDidSave(viewModel: weatherViewModel)
+                    self?.dismiss(animated: true, completion: nil)
                 }
             }
         }
