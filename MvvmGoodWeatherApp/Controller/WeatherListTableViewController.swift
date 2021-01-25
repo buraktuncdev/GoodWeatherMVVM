@@ -11,11 +11,15 @@ import UIKit
 
 class WeatherListTableViewController: UITableViewController {
     private var weatherListViewModel = WeatherListViewModel()
-    private var dataSource: WeatherDataSource?
+    private var dataSource: GenericTableViewDataSource<WeatherCell, WeatherViewModel>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.dataSource = WeatherDataSource(self.weatherListViewModel)
+        // MARK: Generic Data Source Using
+        self.dataSource = GenericTableViewDataSource(cellIdentifier: "WeatherCell", items: self.weatherListViewModel.weatherViewModels){ cell, viewModel in
+            cell.cityNameLabel.text = viewModel.name.value
+            cell.temperatureLabel.text = viewModel.currentTemperature.temperature.value.formatAsDegree
+        }
         self.tableView.dataSource = self.dataSource
     }
     
@@ -46,6 +50,7 @@ extension WeatherListTableViewController: AddWeatherDelegate {
     func addWeatherDidSave(viewModel: WeatherViewModel) {
         print("AddWeatherDelegate Delegate Done")
         self.weatherListViewModel.addWeatherViewModel(viewModel)
+        self.dataSource.updateItems(self.weatherListViewModel.weatherViewModels) // Generic Data Source Added updateItems!!
         tableView.reloadData()
     }
 }
