@@ -3,6 +3,3 @@
 
 [![Build Status](https://travis-ci.com/buraktuncdev/GoodWeatherMVVM.svg?branch=master)](https://travis-ci.com/buraktuncdev/GoodWeatherMVVM)
 
-[![Build Status](https://travis-ci.com/buraktuncdev/GoodWeatherMVVM.svg?branch=master)](https://travis-ci.com/buraktuncdev/GoodWeatherMVVM)
-
-![alt text](https://travis-ci.com/buraktuncdev/GoodWeatherMVVM.svg?branch=master)
