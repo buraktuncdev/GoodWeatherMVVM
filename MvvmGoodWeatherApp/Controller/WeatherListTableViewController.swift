@@ -10,50 +10,84 @@ import Foundation
 import UIKit
 
 class WeatherListTableViewController: UITableViewController {
-    
+    private var weatherListViewModel = WeatherListViewModel()
+    private var dataSource: GenericTableViewDataSource<WeatherCell, WeatherViewModel>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.prefersLargeTitles = false
+        // MARK: Generic Data Source Using
+        self.dataSource = GenericTableViewDataSource(cellIdentifier: "WeatherCell", items: self.weatherListViewModel.weatherViewModels){ cell, viewModel in
+            cell.cityNameLabel.text = viewModel.name.value
+            cell.temperatureLabel.text = viewModel.currentTemperature.temperature.value.formatAsDegree
+        }
+        self.tableView.dataSource = self.dataSource
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        prepareForSegue(for: segue)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
+}
+
+extension WeatherListTableViewController: SettingsDelegate {
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    //MARK: Conform the Settings delegate
+    func settingsDone(viewModel: SettingsViewModel) {
+        print("Settings Delegate Done")
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath) as! WeatherCell
-        cell.cityNameLabel?.text = "Merhaba"
-        cell.temperatureLabel?.text = "70°"
-        return cell
+        self.weatherListViewModel.updateUnit(to: viewModel.selectedUnit)
+        self.tableView.reloadData()
     }
+}
+
+extension WeatherListTableViewController: AddWeatherDelegate {
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+    // MARK: Conform the AddWeatherDelegate
+    func addWeatherDidSave(viewModel: WeatherViewModel) {
+        print("AddWeatherDelegate Delegate Done")
+        self.weatherListViewModel.addWeatherViewModel(viewModel)
+        self.dataSource.updateItems(self.weatherListViewModel.weatherViewModels) // Generic Data Source Added updateItems!!
+        tableView.reloadData()
     }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+}
+
+extension WeatherListTableViewController {
+    func prepareForSegue(for segue: UIStoryboardSegue){
+        if segue.identifier == "AddWeatherCitySegueIdentifier" {
+            guard let nav = segue.destination as? UINavigationController else {
+                fatalError("Navigation Controller not found")
+            }
+            
+            guard let addWeatherCityVC = nav.viewControllers.first as? AddWeatherCityViewController else {
+                fatalError("AddWeatherCityViewController not found")
+            }
+            
+            addWeatherCityVC.delegate = self
+            
+        } else if segue.identifier == "SettingsSegueIdentifier"{
+            
+            guard let nav = segue.destination as? UINavigationController else {
+                fatalError("Navigation Controller not found")
+            }
+            
+            guard let settingsVC = nav.viewControllers.first as? SettingsTableViewController else {
+                fatalError("SettingsSegueIdentifier not found")
+            }
+            
+            settingsVC.delegate = self
+        } else if segue.identifier == "weatherDetailsSegueIdentifier" {
+            
+            guard let weatherDetailsVC = segue.destination as? WeatherDetailsViewController,
+                  let indexPath = self.tableView.indexPathForSelectedRow else {
+                return
+            }
+            
+            let weatherVM = self.weatherListViewModel.modelAt(indexPath.row)
+            weatherDetailsVC.weatherViewModel = weatherVM
+        }
     }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cityCellIdentifier", for: indexPath) as! WeatherCell
-        cell.cityNameLabel?.text = "Houston"
-        cell.temparatureLabel?.text = "70°"
-        return cell
-    }
-    
 }
